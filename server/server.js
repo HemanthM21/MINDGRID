@@ -7,7 +7,14 @@ const connectDB = require('./config/db');
 const path = require('path');
 const fs = require('fs');
 
+// ============================================
+// LOAD ENVIRONMENT VARIABLES
+// ============================================
 dotenv.config();
+
+// ============================================
+// CONNECT DATABASE
+// ============================================
 connectDB();
 
 const app = express();
@@ -24,15 +31,18 @@ if (!fs.existsSync(uploadsDir)) {
 // ============================================
 // MIDDLEWARE
 // ============================================
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || '*',
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Logging middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path}`);
   next();
@@ -50,7 +60,7 @@ app.post('/api/test/ai', async (req, res, next) => {
     if (!text || text.trim().length === 0) {
       return res.status(400).json({
         success: false,
-        message: 'Please provide "text" in JSON body'
+        message: 'Please provide "text" in JSON body',
       });
     }
 
@@ -58,14 +68,13 @@ app.post('/api/test/ai', async (req, res, next) => {
     const priority = calculatePriority(analysis);
 
     res.status(200).json({ success: true, analysis, priority });
-
   } catch (err) {
     next(err);
   }
 });
 
 // ============================================
-// OCR TEST ROUTE (MUST BE BEFORE MAIN ROUTES)
+// OCR TEST ROUTE
 // ============================================
 const upload = require('./middleware/upload');
 const { extractTextFromImage } = require('./services/ocrService');
@@ -81,22 +90,15 @@ app.post('/api/test/ocr', upload.single('file'), async (req, res) => {
 
     const extractedText = await extractTextFromImage(req.file.path);
 
-    res.status(200).json({
-      success: true,
-      extractedText,
-    });
-
+    res.status(200).json({ success: true, extractedText });
   } catch (err) {
-    console.error("OCR Test Error:", err.message);
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
+    console.error('OCR Test Error:', err.message);
+    res.status(500).json({ success: false, message: err.message });
   }
 });
 
 // ============================================
-// MAIN API ROUTES (AFTER TEST ROUTES)
+// MAIN API ROUTES
 // ============================================
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/documents', require('./routes/documentRoutes'));
@@ -124,17 +126,17 @@ app.get('/health', (req, res) => {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
   });
 });
 
 // ============================================
-// 404 HANDLER — MUST BE LAST
+// 404 HANDLER
 // ============================================
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: `Route ${req.method} ${req.path} not found`
+    message: `Route ${req.method} ${req.path} not found`,
   });
 });
 
@@ -143,7 +145,6 @@ app.use((req, res) => {
 // ============================================
 app.use((err, req, res, next) => {
   console.error('❌ Server Error:', err.stack);
-
   res.status(err.status || 500).json({
     success: false,
     message: err.message || 'Internal server error',
@@ -152,22 +153,23 @@ app.use((err, req, res, next) => {
 
 // ============================================
 // START SERVER
+// Using process.env.PORT (IMPORTANT FOR RENDER)
 // ============================================
-const PORT = 5002; // Override .env for debugging
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
   console.log(`
 ╔═══════════════════════════════════════╗
 ║   🚀 LifeOS Server Running           
-║   📍 Port: ${PORT}                     
+║   📍 Port: ${PORT}
 ║   🌍 Environment: ${process.env.NODE_ENV || 'development'}
 ║   📡 API URL: http://localhost:${PORT}
 ╚═══════════════════════════════════════╝
-  `);
+`);
 });
 
 // ============================================
-// GRACEFUL SHUTDOWN
+// SHUTDOWN HANDLERS
 // ============================================
 process.on('unhandledRejection', (err) => {
   console.error('❌ Unhandled Promise Rejection:', err.message);
