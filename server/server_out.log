@@ -1,0 +1,652 @@
+
+╔═══════════════════════════════════════╗
+║   🚀 LifeOS Server Running           
+║   📍 Port: 5000                     
+║   🌍 Environment: development
+║   📡 API URL: http://localhost:5000
+╚═══════════════════════════════════════╝
+  
+✅ MongoDB Connected: 127.0.0.1
+POST /api/auth/signup
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+GET /api/tasks
+GET /api/tasks
+PUT /api/tasks/693b3e53b5745ea894aadbf6
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+GET /api/tasks
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+POST /api/tasks/ai-journal
+📝 Received journal text, analyzing...
+✅ AI result received: {
+  tasks: [
+    'Complete project (due tomorrow morning)',
+    'Prepare for hackathon presentation',
+    'Get good sleep'
+  ],
+  followUpQuestions: [
+    'What is the project about, and what specific tasks remain for its completion?',
+    'When is the hackathon presentation scheduled, and what aspects of it need preparation?',
+    'What typically prevents you from getting good sleep, especially when facing deadlines?',
+    'Do you have a strategy to balance completing tasks with ensuring you get adequate rest?'
+  ],
+  summary: 'The user is facing two major immediate deadlines: completing a project by tomorrow morning and preparing for a hackathon presentation. They also recognize the critical need for good sleep amidst these demanding tasks.',
+  mood: 'Urgent, Focused, Slightly Stressed, and Conscious of physical needs.',
+  priorities: [
+    'Completing the project (highest, due to immediate deadline)',
+    'Preparing for the hackathon presentation',
+    'Ensuring adequate sleep (recognized for well-being and performance)'
+  ],
+  stressFactors: [
+    'Imminent project deadline (tomorrow morning)',
+    'Demands of preparing for a hackathon presentation',
+    'Potential conflict between task completion and the need for sleep'
+  ],
+  importantEvents: [ 'Project deadline (tomorrow morning)', 'Hackathon presentation' ]
+}
+POST /api/tasks/ai-journal/confirm
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+POST /api/tasks/ai-journal
+📝 Received journal text, analyzing...
+✅ AI result received: {
+  tasks: [ 'create project', 'prepare seminar', 'good sleep' ],
+  followUpQuestions: [
+    'What kind of project needs to be created?',
+    'What is the topic and deadline for the seminar?',
+    "Was the 'good sleep' achieved, or is it a goal for tonight?",
+    'Are there any dependencies or specific next steps for these tasks?'
+  ],
+  summary: 'The user is focused on two primary tasks: creating a project and preparing a seminar. Additionally, they have a stated goal or a recent experience of prioritizing good sleep.',
+  mood: 'Neutral (with a hint of focus on productivity and well-being)',
+  priorities: [
+    'Project completion',
+    'Seminar preparation',
+    'Personal well-being/rest'
+  ],
+  stressFactors: [
+    'Potential workload from project and seminar deadlines',
+    "Managing personal energy levels to achieve good sleep (if it's a goal rather than an achievement)"
+  ],
+  importantEvents: [ 'Beginning of a new project', 'Upcoming seminar presentation' ]
+}
+POST /api/tasks/ai-journal/confirm
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/auth/google
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/signup
+POST /api/auth/signup
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+PUT /api/tasks/693b3e53b5745ea894aadbf6
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765502405110-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/login
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+GET /api/tasks
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+POST /api/journal/create
+POST /api/journal/analyze
+POST /api/journal/analyze
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/journal/create
+POST /api/journal/analyze
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/journal/analyze
+POST /api/journal/analyze
+POST /api/journal/analyze
+POST /api/journal/create
+GET /api/documents
+GET /api/documents
+GET /api/tasks
+GET /api/tasks
+POST /api/journal/analyze
+POST /api/journal/analyze
+POST /api/journal/create
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/journal/analyze
+POST /api/journal/create
+POST /api/journal/analyze
+POST /api/journal/create
+POST /api/journal/analyze
+POST /api/journal/create
+POST /api/journal/create
+POST /api/journal/create
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765505119194-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks
+GET /api/tasks
+POST /api/tasks/ai-journal
+📝 Received journal text, analyzing...
+✅ AI result received: {
+  tasks: [ 'Participate in hackathon', 'Have breakfast' ],
+  followUpQuestions: [
+    'What kind of hackathon is it?',
+    'What project or idea are you working on?',
+    "Who are 'we'? Are you part of a team?",
+    'What are you hoping to achieve or learn at the hackathon?',
+    'What are you most excited about regarding the hackathon?'
+  ],
+  summary: 'The user is excited to be participating in a hackathon today and has already completed breakfast.',
+  mood: 'Excited',
+  priorities: [
+    'Active participation in the hackathon',
+    "Team collaboration (implied by 'we')"
+  ],
+  stressFactors: [],
+  importantEvents: [ 'Participating in a hackathon' ]
+}
+POST /api/tasks/ai-journal/confirm
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+POST /api/journal/analyze
+POST /api/journal/create
+POST /api/journal/create
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765505421835-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/auth/google
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765505762137-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+POST /api/journal/analyze
+POST /api/journal/create
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765505811706-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 1 reminders
+GET /api/tasks
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/login
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765506408522-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks
+GET /api/tasks
+POST /api/journal/analyze
+POST /api/journal/create
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765506666923-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+POST /api/journal/analyze
+POST /api/journal/create
+GET /api/documents
+GET /api/documents
+GET /api/tasks
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765506955769-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+POST /api/journal/analyze
+POST /api/journal/create
+GET /api/tasks
+GET /api/tasks
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765507214878-ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 14%
+OCR Progress: 21%
+OCR Progress: 29%
+OCR Progress: 36%
+OCR Progress: 43%
+OCR Progress: 50%
+OCR Progress: 57%
+OCR Progress: 64%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 126
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765507459161-ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 14%
+OCR Progress: 21%
+OCR Progress: 29%
+OCR Progress: 36%
+OCR Progress: 43%
+OCR Progress: 50%
+OCR Progress: 57%
+OCR Progress: 64%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 126
+🤖 Starting AI analysis...
+✅ Document saved to database
+✅ Created 0 reminders
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765507615335-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765507632940-ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 14%
+OCR Progress: 21%
+OCR Progress: 29%
+OCR Progress: 36%
+OCR Progress: 43%
+OCR Progress: 50%
+OCR Progress: 57%
+OCR Progress: 64%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 126
+🤖 Starting AI analysis...
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765509704986-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765510256118-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765510806391-ChatGPT Image Dec 7, 2025, 12_52_44 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 14%
+OCR Progress: 21%
+OCR Progress: 29%
+OCR Progress: 36%
+OCR Progress: 43%
+OCR Progress: 50%
+OCR Progress: 57%
+OCR Progress: 64%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 126
+🤖 Starting AI analysis...
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/tasks
+GET /api/tasks
+GET /api/documents
+GET /api/documents
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765510839874-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
+POST /api/auth/login
+GET /api/tasks/dashboard/summary
+GET /api/tasks/dashboard/summary
+GET /api/documents
+GET /api/documents
+POST /api/documents/upload
+📤 File uploaded: ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+🔍 Starting OCR...
+🔍 Starting OCR on: uploads\1765511357243-ChatGPT Image Dec 7, 2025, 01_31_16 PM.png
+OCR Progress: 0%
+OCR Progress: 7%
+OCR Progress: 16%
+OCR Progress: 23%
+OCR Progress: 31%
+OCR Progress: 39%
+OCR Progress: 47%
+OCR Progress: 54%
+OCR Progress: 63%
+OCR Progress: 100%
+✅ OCR completed successfully
+📝 Extracted text length: 154
+🤖 Starting AI analysis...
