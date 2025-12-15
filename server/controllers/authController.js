@@ -20,9 +20,11 @@ const generateToken = (id) => {
 exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    console.log(`[REGISTER ATTEMPT] Email: ${email}, Name: ${name}`); // Debug log
 
     // Validation
     if (!name || !email || !password) {
+      console.log('[REGISTER FAIL] Missing fields');
       return res.status(400).json({
         success: false,
         message: 'Please provide all fields'
@@ -32,6 +34,7 @@ exports.register = async (req, res) => {
     // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
+      console.log('[REGISTER FAIL] User already exists');
       return res.status(400).json({
         success: false,
         message: 'User already exists with this email'
@@ -39,11 +42,13 @@ exports.register = async (req, res) => {
     }
 
     // Create user
+    console.log('[REGISTER] Creating user document...');
     const user = await User.create({
       name,
       email,
       password
     });
+    console.log('[REGISTER] User created successfully:', user._id);
 
     // Generate token
     const token = generateToken(user._id);
@@ -60,11 +65,12 @@ exports.register = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Register Error:', error);
+    console.error('Register Error Full Stack:', error); // Log full error object
     res.status(500).json({
       success: false,
       message: 'Server error during registration',
-      error: error.message
+      error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 };
