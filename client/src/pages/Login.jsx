@@ -18,7 +18,9 @@ export default function Login({ onNavigate, onLogin }) {
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.user))
         api.setToken(res.data.token)
-        onLogin(res.data.user)
+
+        // prevent Vercel build error
+        if (onLogin) onLogin(res.data.user)
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed')
@@ -29,7 +31,6 @@ export default function Login({ onNavigate, onLogin }) {
 
   async function handleGoogleLogin() {
     try {
-      // This will redirect to Google OAuth
       window.location.href = 'http://localhost:5000/api/auth/google'
     } catch (err) {
       setError('Google login failed')
@@ -44,7 +45,7 @@ export default function Login({ onNavigate, onLogin }) {
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label>Email Address</label>
-            <input 
+            <input
               type="text"
               value={email}
               onChange={e => setEmail(e.target.value)}
@@ -55,7 +56,7 @@ export default function Login({ onNavigate, onLogin }) {
 
           <div className="form-group">
             <label>Password</label>
-            <input 
+            <input
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -79,7 +80,7 @@ export default function Login({ onNavigate, onLogin }) {
         </button>
 
         <div className="auth-footer">
-          Don't have an account? 
+          Don't have an account?
           <a onClick={() => onNavigate('signup')}> Sign up here</a>
         </div>
       </div>
