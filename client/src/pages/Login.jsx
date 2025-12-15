@@ -20,7 +20,6 @@ export default function Login({ onNavigate, onLogin }) {
         localStorage.setItem("user", JSON.stringify(res.data.user));
         api.setToken(res.data.token);
 
-        // ensure no Vercel build crash
         if (onLogin) onLogin(res.data.user);
       }
     } catch (err) {
