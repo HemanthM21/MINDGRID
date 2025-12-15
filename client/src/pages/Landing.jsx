@@ -176,7 +176,7 @@ export default function Landing({ onNavigate }) {
             className="logo"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection('hero')}
-            style={{ fontSize: 24, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}
+            style={{ fontSize: 24, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 15 }}
           >
             <span style={{ background: 'linear-gradient(135deg, #764ba2 0%, #4facfe 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>MindGrid</span>
           </motion.div>
