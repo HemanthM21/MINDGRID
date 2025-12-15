@@ -476,19 +476,6 @@ export default function Landing({ onNavigate }) {
               }}
               style={{ position: 'relative' }}
             >
-              {/* 3D Logo as Hero Image */}
-              <motion.img
-                whileHover={{ scale: 1.1, rotate: 0 }}
-                src="/mindgrid_3d_logo.png"
-                alt="MindGrid 3D Logo"
-                style={{
-                  width: '100%',
-                  maxWidth: 450,
-                  height: 'auto',
-                  filter: 'drop-shadow(0 30px 60px rgba(118, 75, 162, 0.4))',
-                  transition: 'all 0.3s ease'
-                }}
-              />
 
               {/* Floating Notification Cards - Clean Triangle Layout (3 Cards Only) */}
 
