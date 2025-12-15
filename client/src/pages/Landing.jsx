@@ -1059,11 +1059,6 @@ export default function Landing({ onNavigate }) {
       < footer style={{ padding: '40px 24px', background: '#2d3748', color: 'white', textAlign: 'center' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-            <img
-              src="C:/Users/mhema/.gemini/antigravity/brain/1faffb27-6a03-40f6-8dfc-abb7330cd939/mindgrid_3d_logo_1765494323449.png"
-              alt="MindGrid Logo"
-              style={{ width: 36, height: 36, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-            />
             MindGrid
           </div>
           <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: 24 }}>
