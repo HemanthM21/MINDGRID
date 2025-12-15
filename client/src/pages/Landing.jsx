@@ -178,11 +178,6 @@ export default function Landing({ onNavigate }) {
             onClick={() => scrollToSection('hero')}
             style={{ fontSize: 24, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}
           >
-            <img
-              src="/mindgrid_3d_logo.png"
-              alt="MindGrid Logo"
-              style={{ width: 40, height: 40, objectFit: 'contain' }}
-            />
             <span style={{ background: 'linear-gradient(135deg, #764ba2 0%, #4facfe 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>MindGrid</span>
           </motion.div>
 
