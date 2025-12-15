@@ -30,7 +30,7 @@ export default function Login({ onNavigate, onLogin }) {
   }
 
   function handleGoogleLogin() {
-    window.location.href = `${import.meta.env.VITE_API_URL || "https://your-backend-url.com"
+    window.location.href = `${import.meta.env.VITE_API_URL || "https://your-backend.com"
       }/auth/google`;
   }
 
@@ -43,7 +43,7 @@ export default function Login({ onNavigate, onLogin }) {
           <div className="form-group">
             <label>Email Address</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
