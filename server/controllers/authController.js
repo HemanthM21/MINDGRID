@@ -68,7 +68,7 @@ exports.register = async (req, res) => {
     console.error('Register Error Full Stack:', error); // Log full error object
     res.status(500).json({
       success: false,
-      message: 'Server error during registration',
+      message: `Server Registration Error: ${error.message}`,
       error: error.message,
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
