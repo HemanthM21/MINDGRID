@@ -172,7 +172,7 @@ export default function Landing({ onNavigate }) {
         }}
       >
         <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px' }}>
-          {/* <motion.div
+          <motion.div
             className="logo"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection('hero')}
@@ -184,7 +184,7 @@ export default function Landing({ onNavigate }) {
               style={{ width: 40, height: 40, objectFit: 'contain' }}
             />
             <span style={{ background: 'linear-gradient(135deg, #764ba2 0%, #4facfe 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>MindGrid</span>
-          </motion.div> */}
+          </motion.div>
 
           {/* Desktop Menu */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -482,7 +482,7 @@ export default function Landing({ onNavigate }) {
               style={{ position: 'relative' }}
             >
               {/* 3D Logo as Hero Image */}
-              {/* <motion.img
+              <motion.img
                 whileHover={{ scale: 1.1, rotate: 0 }}
                 src="/mindgrid_3d_logo.png"
                 alt="MindGrid 3D Logo"
@@ -493,7 +493,7 @@ export default function Landing({ onNavigate }) {
                   filter: 'drop-shadow(0 30px 60px rgba(118, 75, 162, 0.4))',
                   transition: 'all 0.3s ease'
                 }}
-              /> */}
+              />
 
               {/* Floating Notification Cards - Clean Triangle Layout (3 Cards Only) */}
 
@@ -1059,11 +1059,11 @@ export default function Landing({ onNavigate }) {
       < footer style={{ padding: '40px 24px', background: '#2d3748', color: 'white', textAlign: 'center' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-            {/* <img
-              src="C:/Users/mhema/.gemini/antigravity/brain/1faffb27-6a03-40f6-8dfc-abb7330cd939/mindgrid_3d_logo_1765494323449.png"
+            <img
+              src="/mindgrid_3d_logo.png"
               alt="MindGrid Logo"
               style={{ width: 36, height: 36, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-            /> */}
+            />
             MindGrid
           </div>
           <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: 24 }}>
