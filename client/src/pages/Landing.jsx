@@ -477,8 +477,6 @@ export default function Landing({ onNavigate }) {
               style={{ position: 'relative' }}
             >
 
-              {/* Floating Notification Cards - Clean Triangle Layout (3 Cards Only) */}
-
               {/* Top Right Corner - Success Card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, x: 50, y: -50 }}
