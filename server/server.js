@@ -1,138 +1,130 @@
 // server/server.js
 
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./config/db');
-const path = require('path');
-const fs = require('fs');
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./config/db");
+const path = require("path");
+const fs = require("fs");
 
-// ============================================
-// LOAD ENVIRONMENT VARIABLES
-// ============================================
+// Load env variables
 dotenv.config();
 
-// ============================================
-// CONNECT DATABASE
-// ============================================
+// Connect MongoDB
 connectDB();
 
 const app = express();
 
-// ============================================
-// CREATE UPLOADS DIRECTORY IF NOT EXISTS
-// ============================================
-const uploadsDir = path.join(__dirname, 'uploads');
+// ------------------------------------
+// Ensure uploads folder exists
+// ------------------------------------
+const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
-  console.log('✅ Created uploads directory');
+  console.log("📁 uploads/ directory created");
 }
 
-// ============================================
-// MIDDLEWARE
-// ============================================
+// ------------------------------------
+// Middleware
+// ------------------------------------
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || '*',
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   })
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Logging middleware
+// Serve uploaded files
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Simple logger
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
+  console.log(`${req.method} → ${req.path}`);
   next();
 });
 
-// ============================================
-// AI TEST ROUTE
-// ============================================
-const { analyzeDocument, calculatePriority } = require('./services/aiService');
+// ------------------------------------
+// Test AI Route
+// ------------------------------------
+const { analyzeDocument, calculatePriority } = require("./services/aiService");
 
-app.post('/api/test/ai', async (req, res, next) => {
+app.post("/api/test/ai", async (req, res) => {
   try {
     const { text } = req.body;
 
-    if (!text || text.trim().length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: 'Please provide "text" in JSON body',
-      });
+    if (!text) {
+      return res.status(400).json({ success: false, message: "Text is required" });
     }
 
     const analysis = await analyzeDocument(text);
     const priority = calculatePriority(analysis);
 
-    res.status(200).json({ success: true, analysis, priority });
+    res.json({ success: true, analysis, priority });
   } catch (err) {
-    next(err);
+    res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// ============================================
-// OCR TEST ROUTE
-// ============================================
-const upload = require('./middleware/upload');
-const { extractTextFromImage } = require('./services/ocrService');
+// ------------------------------------
+// Test OCR Route
+// ------------------------------------
+const upload = require("./middleware/upload");
+const { extractTextFromImage } = require("./services/ocrService");
 
-app.post('/api/test/ocr', upload.single('file'), async (req, res) => {
+app.post("/api/test/ocr", upload.single("file"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        message: 'Please upload an image with field name "file"',
+        message: "Upload an image with name 'file'",
       });
     }
 
     const extractedText = await extractTextFromImage(req.file.path);
 
-    res.status(200).json({ success: true, extractedText });
+    res.json({ success: true, extractedText });
   } catch (err) {
-    console.error('OCR Test Error:', err.message);
+    console.error("OCR Error:", err);
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// ============================================
-// MAIN API ROUTES
-// ============================================
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/documents', require('./routes/documentRoutes'));
-app.use('/api/reminders', require('./routes/reminderRoutes'));
-app.use('/api/tasks', require('./routes/taskRoutes'));
-app.use('/api/journal', require('./routes/journal'));
+// ------------------------------------
+// Main API Routes
+// ------------------------------------
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/documents", require("./routes/documentRoutes"));
+app.use("/api/tasks", require("./routes/taskRoutes"));
+app.use("/api/reminders", require("./routes/reminderRoutes"));
+app.use("/api/journal", require("./routes/journal"));
 
-// ============================================
-// ROOT ROUTE
-// ============================================
-app.get('/', (req, res) => {
+// ------------------------------------
+// Root Route
+// ------------------------------------
+app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: '🚀 LifeOS API is running!',
-    version: '1.0.0',
+    message: "🚀 LifeOS API is running!",
   });
 });
 
-// ============================================
-// HEALTH CHECK
-// ============================================
-app.get('/health', (req, res) => {
+// ------------------------------------
+// Health Check
+// ------------------------------------
+app.get("/health", (req, res) => {
   res.json({
     success: true,
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development',
+    status: "healthy",
+    time: new Date().toISOString(),
   });
 });
 
-// ============================================
-// 404 HANDLER
-// ============================================
+// ------------------------------------
+// 404 Handler
+// ------------------------------------
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -140,48 +132,37 @@ app.use((req, res) => {
   });
 });
 
-// ============================================
-// GLOBAL ERROR HANDLER
-// ============================================
+// ------------------------------------
+// Global Error Handler
+// ------------------------------------
 app.use((err, req, res, next) => {
-  console.error('❌ Server Error:', err.stack);
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'Internal server error',
-  });
+  console.error("❌ Server Error:", err);
+  res.status(500).json({ success: false, message: err.message });
 });
 
-// ============================================
-// START SERVER
-// Using process.env.PORT (IMPORTANT FOR RENDER)
-// ============================================
+// ------------------------------------
+// Start Server
+// ------------------------------------
 const PORT = process.env.PORT || 5000;
-
 const server = app.listen(PORT, () => {
   console.log(`
-╔═══════════════════════════════════════╗
-║   🚀 LifeOS Server Running           
-║   📍 Port: ${PORT}
-║   🌍 Environment: ${process.env.NODE_ENV || 'development'}
-║   📡 API URL: http://localhost:${PORT}
-╚═══════════════════════════════════════╝
+═══════════════════════════════════
+🚀 LifeOS Backend Running
+🔌 Port: ${PORT}
+🌍 Env: ${process.env.NODE_ENV || "development"}
+═══════════════════════════════════
 `);
 });
 
-// ============================================
-// SHUTDOWN HANDLERS
-// ============================================
-process.on('unhandledRejection', (err) => {
-  console.error('❌ Unhandled Promise Rejection:', err.message);
-  server.close(() => process.exit(1));
+// ------------------------------------
+// Graceful Shutdown
+// ------------------------------------
+process.on("SIGINT", () => {
+  console.log("\n🔌 Server stopped");
+  server.close(() => process.exit(0));
 });
 
-process.on('SIGTERM', () => {
-  console.log('👋 SIGTERM received. Shutting down gracefully...');
-  server.close(() => console.log('✅ Process terminated'));
-});
-
-process.on('SIGINT', () => {
-  console.log('\n👋 SIGINT received. Shutting down gracefully...');
+process.on("SIGTERM", () => {
+  console.log("🔌 Server terminated");
   server.close(() => process.exit(0));
 });

@@ -1,57 +1,53 @@
-import React, { useState } from 'react'
-import api from '../services/api'
+import React, { useState } from 'react';
+import api from '../services/api';
 
 export default function Signup({ onNavigate, onLogin }) {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function handleSignup(e) {
-    e.preventDefault()
-    setError('')
-    setSuccess('')
+    e.preventDefault();
+    setError('');
+    setSuccess('');
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      return
+      setError('Passwords do not match');
+      return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters')
-      return
+      setError('Password must be at least 6 characters');
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const res = await api.post('/auth/signup', { name, email, password })
-      if (res.data.success) {
-        // Store auth data
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user', JSON.stringify(res.data.user))
-        api.setToken(res.data.token)
+      // FIXED URL → backend expects /auth/register
+      const res = await api.post('/auth/register', { name, email, password });
 
-        setSuccess('Account created! Redirecting to dashboard...')
+      if (res.data.success) {
+        const { token, user } = res.data;
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        api.setToken(token);
+
+        setSuccess('Account created! Redirecting...');
+
         setTimeout(() => {
-          onLogin(res.data.user)
-        }, 1500)
+          onLogin(user);
+        }, 1000);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed')
+      setError(err.response?.data?.message || 'Signup failed');
     } finally {
-      setLoading(false)
-    }
-  }
-
-  async function handleGoogleLogin() {
-    try {
-      window.location.href = 'http://localhost:5000/api/auth/google'
-    } catch (err) {
-      setError('Google signup failed')
+      setLoading(false);
     }
   }
 
@@ -66,8 +62,7 @@ export default function Signup({ onNavigate, onLogin }) {
             <input
               type="text"
               value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder="John Doe"
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
@@ -77,8 +72,7 @@ export default function Signup({ onNavigate, onLogin }) {
             <input
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -88,8 +82,7 @@ export default function Signup({ onNavigate, onLogin }) {
             <input
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="••••••••"
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -99,8 +92,7 @@ export default function Signup({ onNavigate, onLogin }) {
             <input
               type="password"
               value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
-              placeholder="••••••••"
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </div>
@@ -113,18 +105,11 @@ export default function Signup({ onNavigate, onLogin }) {
           </button>
         </form>
 
-        <div className="divider">OR</div>
-
-        <button className="google" onClick={handleGoogleLogin}>
-          <span>🔵</span>
-          <span>Sign up with Google</span>
-        </button>
-
         <div className="auth-footer">
           Already have an account?
-          <a onClick={() => onNavigate('login')}> Log in here</a>
+          <a onClick={() => onNavigate('login')}> Log in</a>
         </div>
       </div>
     </div>
-  )
+  );
 }
