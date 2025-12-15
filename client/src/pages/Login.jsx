@@ -30,7 +30,7 @@ export default function Login({ onNavigate, onLogin }) {
   }
 
   function handleGoogleLogin() {
-    window.location.href = `${import.meta.env.VITE_API_URL || "https://your-backend.com"
+    window.location.href = `${import.meta.env.VITE_API_URL || "https://mindgrid-2.onrender.com/"
       }/auth/google`;
   }
 
