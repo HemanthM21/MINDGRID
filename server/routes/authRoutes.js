@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { register, login, getMe, googleAuth } = require('../controllers/authController');
+const { register, login, getMe, googleAuth, fixIndex } = require('../controllers/authController');
 const { protect } = require('../middleware/auth');
 
 /**
@@ -32,6 +32,13 @@ router.post('/login', login);
  * @access  Public
  */
 router.get('/google', googleAuth);
+
+/**
+ * @route   GET /api/auth/fix-index
+ * @desc    Drop problematic username_1 index
+ * @access  Public
+ */
+router.get('/fix-index', fixIndex);
 
 /**
  * @route   GET /api/auth/me

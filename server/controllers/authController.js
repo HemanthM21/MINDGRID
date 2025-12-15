@@ -168,6 +168,7 @@ exports.googleAuth = async (req, res) => {
   try {
     // This is a placeholder - implement full Google OAuth flow
     // For now, return error directing user to complete setup
+    // For now, return error directing user to complete setup
     return res.status(400).json({
       success: false,
       message: 'Google OAuth not yet configured. Please use email/password login.'
@@ -178,5 +179,23 @@ exports.googleAuth = async (req, res) => {
       message: 'Google auth error',
       error: error.message
     });
+  }
+};
+
+/**
+ * @route   GET /api/auth/fix-index
+ * @desc    Drop problematic username_1 index
+ * @access  Public
+ */
+exports.fixIndex = async (req, res) => {
+  try {
+    const collection = User.collection;
+    await collection.dropIndex('username_1');
+    res.status(200).json({ success: true, message: 'Index username_1 dropped successfully' });
+  } catch (error) {
+    if (error.code === 27) {
+      return res.status(200).json({ success: true, message: 'Index username_1 not found (already dropped)' });
+    }
+    res.status(500).json({ success: false, message: 'Failed to drop index', error: error.message });
   }
 };
