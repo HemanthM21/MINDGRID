@@ -172,7 +172,7 @@ export default function Landing({ onNavigate }) {
         }}
       >
         <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px' }}>
-          {/* <motion.div
+          <motion.div
             className="logo"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection('hero')}
@@ -184,7 +184,7 @@ export default function Landing({ onNavigate }) {
               style={{ width: 40, height: 40, objectFit: 'contain' }}
             />
             <span style={{ background: 'linear-gradient(135deg, #764ba2 0%, #4facfe 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>MindGrid</span>
-          </motion.div> */}
+          </motion.div>
 
           {/* Desktop Menu */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -1077,3 +1077,7 @@ export default function Landing({ onNavigate }) {
     </div >
   )
 }
+
+
+
+

@@ -1,130 +1,139 @@
 // server/server.js
 
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const connectDB = require("./config/db");
-const path = require("path");
-const fs = require("fs");
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const path = require('path');
+const fs = require('fs');
 
-// Load env variables
+// ============================================
+// LOAD ENV
+// ============================================
 dotenv.config();
-
-// Connect MongoDB
 connectDB();
 
 const app = express();
 
-// ------------------------------------
-// Ensure uploads folder exists
-// ------------------------------------
-const uploadsDir = path.join(__dirname, "uploads");
+// ============================================
+// CREATE UPLOADS FOLDER
+// ============================================
+const uploadsDir = path.join(__dirname, 'uploads');
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
-  console.log("📁 uploads/ directory created");
+  console.log("📁 uploads/ folder created");
 }
 
-// ------------------------------------
-// Middleware
-// ------------------------------------
+// ============================================
+// CORS FIX (IMPORTANT FOR VERCEL + LOCALHOST)
+// ============================================
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://mindgrid-three.vercel.app",
+      process.env.CLIENT_URL
+    ].filter(Boolean),
     credentials: true,
   })
 );
 
+// ============================================
+// MIDDLEWARE
+// ============================================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Serve uploaded files
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// Simple logger
+// Request Logger
 app.use((req, res, next) => {
-  console.log(`${req.method} → ${req.path}`);
+  console.log(`${req.method} ${req.path}`);
   next();
 });
 
-// ------------------------------------
-// Test AI Route
-// ------------------------------------
-const { analyzeDocument, calculatePriority } = require("./services/aiService");
+// ============================================
+// AI TEST ROUTE
+// ============================================
+const { analyzeDocument, calculatePriority } = require('./services/aiService');
 
-app.post("/api/test/ai", async (req, res) => {
+app.post('/api/test/ai', async (req, res, next) => {
   try {
     const { text } = req.body;
 
-    if (!text) {
-      return res.status(400).json({ success: false, message: "Text is required" });
+    if (!text?.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Text is required",
+      });
     }
 
     const analysis = await analyzeDocument(text);
     const priority = calculatePriority(analysis);
 
-    res.json({ success: true, analysis, priority });
+    res.status(200).json({ success: true, analysis, priority });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    next(err);
   }
 });
 
-// ------------------------------------
-// Test OCR Route
-// ------------------------------------
-const upload = require("./middleware/upload");
-const { extractTextFromImage } = require("./services/ocrService");
+// ============================================
+// OCR TEST ROUTE
+// ============================================
+const upload = require('./middleware/upload');
+const { extractTextFromImage } = require('./services/ocrService');
 
-app.post("/api/test/ocr", upload.single("file"), async (req, res) => {
+app.post('/api/test/ocr', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        message: "Upload an image with name 'file'",
+        message: 'Upload an image with field name "file"',
       });
     }
 
     const extractedText = await extractTextFromImage(req.file.path);
 
-    res.json({ success: true, extractedText });
+    res.status(200).json({ success: true, extractedText });
   } catch (err) {
-    console.error("OCR Error:", err);
+    console.error("OCR Error:", err.message);
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// ------------------------------------
-// Main API Routes
-// ------------------------------------
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/documents", require("./routes/documentRoutes"));
-app.use("/api/tasks", require("./routes/taskRoutes"));
-app.use("/api/reminders", require("./routes/reminderRoutes"));
-app.use("/api/journal", require("./routes/journal"));
+// ============================================
+// API ROUTES
+// ============================================
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/documents', require('./routes/documentRoutes'));
+app.use('/api/reminders', require('./routes/reminderRoutes'));
+app.use('/api/tasks', require('./routes/taskRoutes'));
+app.use('/api/journal', require('./routes/journal'));
 
-// ------------------------------------
-// Root Route
-// ------------------------------------
-app.get("/", (req, res) => {
+// ============================================
+// ROOT ROUTE
+// ============================================
+app.get('/', (req, res) => {
   res.json({
     success: true,
-    message: "🚀 LifeOS API is running!",
+    message: '🚀 LifeOS API is running',
   });
 });
 
-// ------------------------------------
-// Health Check
-// ------------------------------------
-app.get("/health", (req, res) => {
+// ============================================
+// HEALTH CHECK
+// ============================================
+app.get('/health', (req, res) => {
   res.json({
     success: true,
     status: "healthy",
-    time: new Date().toISOString(),
+    uptime: process.uptime(),
   });
 });
 
-// ------------------------------------
-// 404 Handler
-// ------------------------------------
+// ============================================
+// 404 HANDLER
+// ============================================
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -132,37 +141,29 @@ app.use((req, res) => {
   });
 });
 
-// ------------------------------------
-// Global Error Handler
-// ------------------------------------
+// ============================================
+// ERROR HANDLER
+// ============================================
 app.use((err, req, res, next) => {
-  console.error("❌ Server Error:", err);
-  res.status(500).json({ success: false, message: err.message });
+  console.error("❌ ERROR:", err);
+  res.status(500).json({
+    success: false,
+    message: err.message || "Internal server error",
+  });
 });
 
-// ------------------------------------
-// Start Server
-// ------------------------------------
+// ============================================
+// START SERVER
+// ============================================
+// Use process.env.PORT for Render/Vercel
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
+
+app.listen(PORT, () => {
   console.log(`
-═══════════════════════════════════
+-----------------------------------------
 🚀 LifeOS Backend Running
-🔌 Port: ${PORT}
-🌍 Env: ${process.env.NODE_ENV || "development"}
-═══════════════════════════════════
+📌 PORT: ${PORT}
+🌍 ENV: ${process.env.NODE_ENV || "development"}
+-----------------------------------------
 `);
-});
-
-// ------------------------------------
-// Graceful Shutdown
-// ------------------------------------
-process.on("SIGINT", () => {
-  console.log("\n🔌 Server stopped");
-  server.close(() => process.exit(0));
-});
-
-process.on("SIGTERM", () => {
-  console.log("🔌 Server terminated");
-  server.close(() => process.exit(0));
 });
