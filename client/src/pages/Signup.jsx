@@ -41,7 +41,8 @@ export default function Signup({ onNavigate, onLogin }) {
         }, 1500)
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed')
+      console.error("Signup error details:", err);
+      setError(err.response?.data?.message || err.message || 'Signup failed - check console')
     } finally {
       setLoading(false)
     }
@@ -49,7 +50,7 @@ export default function Signup({ onNavigate, onLogin }) {
 
   async function handleGoogleLogin() {
     try {
-      window.location.href = 'http://localhost:5000/api/auth/google'
+      window.location.href = `${import.meta.env.VITE_API_URL || 'https://mindgrid-2.onrender.com'}/auth/google`
     } catch (err) {
       setError('Google signup failed')
     }

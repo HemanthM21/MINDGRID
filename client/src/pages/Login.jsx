@@ -23,7 +23,8 @@ export default function Login({ onNavigate, onLogin }) {
                 if (onLogin) onLogin(res.data.user);
             }
         } catch (err) {
-            setError(err.response?.data?.message || "Login failed");
+            console.error("Login error details:", err);
+            setError(err.response?.data?.message || err.message || "Login failed - check console");
         } finally {
             setLoading(false);
         }

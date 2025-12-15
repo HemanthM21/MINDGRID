@@ -172,10 +172,6 @@ export default function Landing({ onNavigate }) {
         }}
       >
         <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px' }}>
-          <motion.div>
-            <span style={{ background: 'linear-gradient(135deg, #764ba2 0%, #4facfe 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>MindGrid</span>
-          </motion.div>
-
           {/* Desktop Menu */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             {/* Navigation Links */}
