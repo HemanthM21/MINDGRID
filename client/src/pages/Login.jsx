@@ -1,40 +1,38 @@
-import React, { useState } from 'react'
-import api from '../services/api'
+import React, { useState } from "react";
+import api from "../services/api";
 
 export default function Login({ onNavigate, onLogin }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
-      const res = await api.post('/auth/login', { email, password })
-      if (res.data.success) {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user', JSON.stringify(res.data.user))
-        api.setToken(res.data.token)
+      const res = await api.post("/auth/login", { email, password });
 
-        // prevent Vercel build error
-        if (onLogin) onLogin(res.data.user)
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        api.setToken(res.data.token);
+
+        // ensure no Vercel build crash
+        if (onLogin) onLogin(res.data.user);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed')
+      setError(err.response?.data?.message || "Login failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
-  async function handleGoogleLogin() {
-    try {
-      window.location.href = 'http://localhost:5000/api/auth/google'
-    } catch (err) {
-      setError('Google login failed')
-    }
+  function handleGoogleLogin() {
+    window.location.href = `${import.meta.env.VITE_API_URL || "https://your-backend-url.com"
+      }/auth/google`;
   }
 
   return (
@@ -48,7 +46,7 @@ export default function Login({ onNavigate, onLogin }) {
             <input
               type="text"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
             />
@@ -59,7 +57,7 @@ export default function Login({ onNavigate, onLogin }) {
             <input
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
             />
@@ -68,7 +66,7 @@ export default function Login({ onNavigate, onLogin }) {
           {error && <div className="form-error">{error}</div>}
 
           <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Sign In'}
+            {loading ? "Logging in..." : "Sign In"}
           </button>
         </form>
 
@@ -81,9 +79,9 @@ export default function Login({ onNavigate, onLogin }) {
 
         <div className="auth-footer">
           Don't have an account?
-          <a onClick={() => onNavigate('signup')}> Sign up here</a>
+          <a onClick={() => onNavigate("signup")}> Sign up here</a>
         </div>
       </div>
     </div>
-  )
+  );
 }
